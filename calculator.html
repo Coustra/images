@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Token Price Calculator</title>
+<style>
+  body { font-family: Arial, sans-serif; }
+  .container { margin-top: 20px; }
+  label, button { margin-top: 10px; display: block; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <label for="solToLock">SOL Amount in Liquidity Pool (To Lock):</label>
+  <input type="number" id="solToLock" placeholder="Enter SOL to lock">
+
+  <label for="totalSOL">Total Amount of SOL in MEME Coin:</label>
+  <input type="number" id="totalSOL" placeholder="Total SOL amount">
+
+  <label for="totalSupply">Total Supply of MEME Coins:</label>
+  <input type="number" id="totalSupply" placeholder="Total MEME supply">
+
+  <button onclick="calculateInitialSetup()">Calculate Initial Setup</button>
+
+  <p>Initial Price of 1 MEME: <span id="initialPrice">0</span> SOL</p>
+  <p>Value of Total Supply in SOL: <span id="totalValue">0</span></p>
+</div>
+
+<script>
+function calculateInitialSetup() {
+  var solToLock = parseFloat(document.getElementById("solToLock").value);
+  var totalSOL = parseFloat(document.getElementById("totalSOL").value);
+  var totalSupply = parseFloat(document.getElementById("totalSupply").value);
+
+  // Calculate the initial price of MEME based on SOL to lock and the total supply.
+  var initialPrice = solToLock / totalSupply;
+
+  // Calculate the value of the total supply in terms of SOL.
+  var totalValue = totalSupply * initialPrice;
+
+  // Update the HTML with the results.
+  document.getElementById("initialPrice").innerText = initialPrice.toFixed(7);
+  document.getElementById("totalValue").innerText = `Approx. ${totalValue.toFixed(2)} SOL (based on locked SOL)`;
+}
+</script>
+
+</body>
+</html>
